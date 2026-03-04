@@ -1,9 +1,8 @@
 library(arules)
-data <- read.transactions(file.choose(), format = "basket", sep = ",")
-summary(data)
-rules <- apriori(data, parameter = list(supp = 0.001, conf = 0.8))
-length(rules)
-inspect(head(rules, 10))
-inspect(rules)
-sorted_rules <- sort(rules, by = "confidence", decreasing = TRUE)
-inspect(head(sorted_rules, 10))
+
+wholesale <- read.transactions("wholesale.csv", format = "basket",sep = ",")
+summary(wholesale)
+rules <- apriori(wholesale,parameter = list(supp = 0.2, conf = 0.5))
+
+rules_sorted <- sort(rules, by = "confidence", decreasing = TRUE)
+inspect(head(rules_sorted, 5))
