@@ -1,7 +1,7 @@
 library(e1071)
 employee <- read.csv("employee.csv")
 employee$Status <- as.factor(employee$Status)
-str(employee)
-svm_model <- svm(Status ~., data = employee, type = "C-classification")
-pred <- predict (svm_model, employee)
-table (pred, employee$Status)
+model <- svm(Status ~ Age + Salary + Experience, data = employee)
+pred <- predict(model, employee)
+table(pred, employee$Status)
+mean(pred == employee$Status) * 100
