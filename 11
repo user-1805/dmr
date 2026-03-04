@@ -5,3 +5,11 @@ model <- svm(Status ~ Age + Salary + Experience, data = employee)
 pred <- predict(model, employee)
 table(pred, employee$Status)
 mean(pred == employee$Status) * 100
+
+
+library(e1071)
+data(iris)
+model <- svm(Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, data = iris)
+pred <- predict(model, iris)
+table(pred, iris$Species)
+mean(pred == iris$Species) * 100
